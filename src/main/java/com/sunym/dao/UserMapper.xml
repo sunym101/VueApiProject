@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.sunym.dao.UserMapper">
+	<!-- 获取线路信息 -->
+	<select id="save" parameterType="java.lang.String" resultType="com.sunym.bean.User">
+		SELECT mr.v_route_code AS routeCode,
+		mr.v_route_name AS routeName
+		FROM tbl_mst_route mr
+		<where>
+			<if test="route_code != null">
+				mr.v_route_code = #{route_code}
+			</if>
+		</where>
+		ORDER BY mr.v_route_code;
+	</select>
+</mapper>
